@@ -1,0 +1,51 @@
+﻿<FlipViewItem
+    x:Class="BabyJournal.FlipViewItemDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BabyJournal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+    <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
+
+        <Grid Height="578" Width="Auto" Margin="120,0,0,0" VerticalAlignment="Top">
+            <Grid.Background>
+                <ImageBrush/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="525"/>
+                <ColumnDefinition Width="889*"/>
+            </Grid.ColumnDefinitions>
+            
+            <RichTextBlock x:Name="richTextBlock" IsTextSelectionEnabled="False" Style="{StaticResource ItemRichTextStyle}" Margin="0" VerticalAlignment="Top">
+
+                <Paragraph LineStackingStrategy="MaxHeight">
+                    <InlineUIContainer>
+                        <Grid x:Name="MainGrid" Width="506" Height="496">
+                            <Grid.Background>
+                                <ImageBrush/>
+                            </Grid.Background>
+                            <Image Source="ms-appx:///Assets/GalleryPage/GalleryBig.png"/>
+                            <Image x:Name="iImageBox" HorizontalAlignment="Center" Height="342" VerticalAlignment="Center" Width="444" Margin="0,-34,0,0" Source="Assets/GalleryPage/Gallerpic.png" Stretch="Fill"/>
+                        </Grid>
+                    </InlineUIContainer>
+                </Paragraph>
+
+            </RichTextBlock>
+            
+            <Grid HorizontalAlignment="Left" Height="470" VerticalAlignment="Top" Width="629" Grid.Column="3" Margin="0,28,50,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Assets/DetailPage/DetailBg.png"/>
+                </Grid.Background>
+                
+                <StackPanel Margin="15,20,10,10" Height="450">
+                    <TextBlock x:Name="iTitle" TextWrapping="Wrap" Text="It was a funny day for Juppy" FontFamily="Segoe UI" FontSize="24" Foreground="#FF0D465B" FontWeight="ExtraBold" Margin="0,0,0,30"/>
+                    <!--<TextBlock x:Name="iDesc" TextWrapping="Wrap" Text="&quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, &quot;Lorem ipsum dolor sr adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed " FontFamily="Segoe UI" FontSize="20" Foreground="#FF0D465B" LineStackingStrategy="BlockLineHeight" LineHeight="32" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
+                    <TextBlock x:Name="iDesc" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" FontFamily="Segoe UI" FontSize="20" Foreground="#FF0D465B" />
+                </StackPanel>
+                
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</FlipViewItem>

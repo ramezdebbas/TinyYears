@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="5ece851b-1bb4-4d04-8339-3d1a312ca49a-nivax-0393niv" Publisher="CN=Abu Bakar Sadeeq" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>Tiny Years</DisplayName>
+    <PublisherDisplayName>Ramez</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="nivax.App">
+      <VisualElements DisplayName="Tiny Years" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Tiny Years" ForegroundText="light" BackgroundColor="#1DA0D1">
+        <DefaultTile WideLogo="Assets\widelogo.png" ShortName="Tiny Years" ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1DA0D1" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+        <Extension Category="windows.fileOpenPicker">
+          <FileOpenPicker>
+            <SupportedFileTypes>
+              <FileType>.jpg</FileType>
+              <FileType>.png</FileType>
+              <FileType>.gif</FileType>
+            </SupportedFileTypes>
+          </FileOpenPicker>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="picturesLibrary" />
+  </Capabilities>
+</Package>

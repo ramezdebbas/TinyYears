@@ -1,0 +1,13 @@
+Tiny Years:
+Description:
+Tiny Years is an app where you add collection of groups, add data, Memories about your requirement what you want to add regarding it.
+
+Features:
+•	Add Groups into the App.
+•	User Interaction & Support.
+•	Delete the images/groups, Make Favourites which group you want. 
+•	Add Images by using File Picker (Browse the Images from your directory). 
+•	Fully Different User Interface Designed keeping in focus point of view of Niche (Target) Market.
+•	 Live Tiles(Locally & Remotely)
+•	Searching feature.
+•	Fully Unique Branding (Unique Logo Designing & Graphics Designing).

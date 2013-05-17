@@ -1,0 +1,148 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="BabyJournal.AddNewBaby"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="using:BabyJournal.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Name="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Name="TextBoxStyle" TargetType="TextBox" >
+            
+        </Style>
+    </Page.Resources>
+    
+    <Grid Style="{StaticResource LayoutRootStyle}">
+        <Grid x:Name="SnapGrid" Visibility="Collapsed" Style="{StaticResource SnapGridStyle}">
+            <Image Source="ms-appx:///Assets/Logo.png" />
+        </Grid>
+
+        <Grid x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/bg.jpg"/>
+            </Grid.Background>
+
+            <!-- Back button and page title -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="backButton" Click="OnCancel" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+                <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}" Foreground="Black"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="440"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Image Grid.Row="1" Grid.Column="1" Source="ms-appx:///Assets/GalleryPage/GalleryBig.png" Stretch="Fill" />
+                    <Button x:Name="iBrowse" Content="Browse" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,53,26,86" Foreground="Black" Click="OnBrowseClick" />
+                    <Image x:Name="iBabyImage" Grid.Row="1" Grid.Column="1" Margin="25,53,26,86"/>
+                </Grid>
+
+                <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,30,0,0">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Group : " Style="{StaticResource TextBlockStyle}" Grid.Column="0"/>
+                        <TextBox x:Name="iGroupName" Style="{StaticResource TextBoxStyle}" Grid.Column="1" MaxLength="20" TextChanged="OnTextChanged"/>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Title : " Style="{StaticResource TextBlockStyle}" Grid.Column="0"/>
+                        <TextBox x:Name="iTitle" Style="{StaticResource TextBoxStyle}" Grid.Column="1" MaxLength="20" TextChanged="OnTextChanged"/>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Description : " Style="{StaticResource TextBlockStyle}" Grid.Column="0"/>
+                        <TextBox x:Name="iDesc" Style="{StaticResource TextBoxStyle}" Grid.Column="1" AcceptsReturn="True" Height="240" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxLength="200" TextWrapping="Wrap" TextChanged="OnTextChanged" />
+                    </Grid>
+
+                    <Grid Margin="0,20,20,0">
+                        <Button Content="Save" Click="OnSaved" HorizontalAlignment="Right" Foreground="Black" FontSize="20" BorderBrush="Black" VerticalAlignment="Top" />
+                        <TextBlock x:Name="iInvalid" Style="{StaticResource PageSubheaderTextStyle}" Foreground="Red" Text="Invalid Input." Margin="10,-20,78,0" Height="130" TextWrapping="Wrap" Visibility="Collapsed" />
+                    </Grid>
+                    
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SnapGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MainGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>
